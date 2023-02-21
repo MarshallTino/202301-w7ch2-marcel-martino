@@ -12,7 +12,7 @@ export const login = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { password, user } = req.body;
+  const { user, password } = req.body;
 
   const userName = await User.findOne({ user, password });
 
@@ -30,7 +30,7 @@ export const login = async (
     sub: userName?._id,
   };
 
-  const token = jwt.sign(jwtPayload, process.env.JWR_SECRET!);
+  const token = jwt.sign(jwtPayload, process.env.JWT_SECRET!);
 
   res.status(200).json({ token });
 };
