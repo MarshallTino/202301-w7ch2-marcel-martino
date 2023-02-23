@@ -9,10 +9,16 @@ const register = async (
   next: NextFunction
 ) => {
   try {
+    const image = req.file?.filename;
+
     const { password, username } = req.body;
 
     const hashedPassword = await bcryptjs.hash(password, 10);
-    const user = await User.create({ username, password: hashedPassword });
+    const user = await User.create({
+      username,
+      password: hashedPassword,
+      image,
+    });
 
     res.status(201).json({ user });
   } catch (error) {
