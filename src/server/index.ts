@@ -13,7 +13,7 @@ app.disable("x-powered-by");
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/login", userRouter);
+app.use("/users", userRouter);
 app.use("/robots", robotsRouter);
 
 app.use(notFoundError);
